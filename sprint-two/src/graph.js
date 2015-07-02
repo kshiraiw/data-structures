@@ -1,15 +1,19 @@
 
 
 var Graph = function(){
+	this.nodes = {};
 };
 
 Graph.prototype.addNode = function(node){
+	this.nodes[node] = {name: node, adjacentTo: []}
 };
 
 Graph.prototype.contains = function(node){
+	return !!this.nodes[node];
 };
 
 Graph.prototype.removeNode = function(node){
+	delete this.nodes[node];
 };
 
 Graph.prototype.hasEdge = function(fromNode, toNode){
