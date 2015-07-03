@@ -1,11 +1,15 @@
 var BinarySearchTree = function(value){
-	this.root = new Node(value);
+	var obj = Object.create(BinarySearchTree.prototype);
+	obj.value = value;
+	obj.left = null;
+	obj.right = null;
+	return obj;
 };
 
 BinarySearchTree.prototype = {
 	insert: function(value){
-		var tree = new Node(value);
-		var current = this.root;
+		var tree = BinarySearchTree(value);
+		var current = this;
 		var isPlaced = false;
 		while(!isPlaced) {
 			if(value > current.value){
@@ -27,7 +31,7 @@ BinarySearchTree.prototype = {
 	},
 	contains: function(value) {
 		var isFound = false;
-		var current = this.root;
+		var current = this;
 		while (!isFound && current !== null) {
 			if (value === current.value) {
 				isFound = true;
@@ -49,16 +53,11 @@ BinarySearchTree.prototype = {
 				addCallback(current.right);
 			}
 		}
-		addCallback(this.root);
+		addCallback(this);
 	}
 };
 
 
-var Node = function(value) {
-	this.value = value;
-	this.right = null;
-	this.left = null;
-}
 
 
 /*
