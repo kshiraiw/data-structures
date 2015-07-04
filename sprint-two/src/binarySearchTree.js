@@ -30,18 +30,19 @@ BinarySearchTree.prototype = {
 		}
 	},
 	contains: function(value) {
-		var isFound = false;
-		var current = this;
-		while (!isFound && current !== null) {
-			if (value === current.value) {
-				isFound = true;
-			} else if (value > current.value) {
-				current = current.right;
+		var nodeContains = function(node) {
+			if (node.value === value) {
+				return true;
+			} else if (!node.left && !node.right) {
+				return false;
+			} else if (value > node.value) {
+				return nodeContains(node.right);
 			} else {
-				current = currrent.left;
+				return nodeContains(node.left);
 			}
-		}
-		return isFound;
+		};
+
+		return nodeContains(this);
 	},
 	depthFirstLog: function(callback){
 		var addCallback = function(current){
@@ -52,7 +53,7 @@ BinarySearchTree.prototype = {
 			if(current.right){
 				addCallback(current.right);
 			}
-		}
+		};
 		addCallback(this);
 	}
 };
