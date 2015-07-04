@@ -37,9 +37,17 @@ describe('hashTable', function() {
     hashTable.insert(v1, v1);
     hashTable.insert(v2, v2);
     expect(hashTable.retrieve(v1)).to.equal(v1);
-    console.dir(hashTable)
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
+  });
+  it('should handle removal properly for a large list', function(){
+    hashTable.insert('Max', 'ince');
+    hashTable.insert('Kiyomi', 'Li');
+    hashTable.insert('Steven', 'Seagal');
+    hashTable.insert("Internet", "lol");
+    hashTable.insert('hack', "reactor");
+    hashTable.remove("Internet");
+    expect(hashTable.retrieve("Internet")).to.equal(null);
   });
 
   // (Extra credit! Remove the extra "x" when you want the following tests to run)
