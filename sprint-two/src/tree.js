@@ -63,7 +63,7 @@ treeMethods.contains = function(target){
 				searching(node.children[i]);
 			}
 		}
-	}
+	};
 
 	searching(this);
 	return answer;
