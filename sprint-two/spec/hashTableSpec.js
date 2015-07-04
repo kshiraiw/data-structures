@@ -37,6 +37,7 @@ describe('hashTable', function() {
     hashTable.insert(v1, v1);
     hashTable.insert(v2, v2);
     expect(hashTable.retrieve(v1)).to.equal(v1);
+    console.dir(hashTable)
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
   });

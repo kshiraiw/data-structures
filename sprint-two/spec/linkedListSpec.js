@@ -33,7 +33,9 @@ describe('linkedList', function() {
 
   it("should return the value of the former head when removeHead is called", function(){
     linkedList.addToTail(4);
+    linkedList.addToTail(5);
     expect(linkedList.removeHead()).to.equal(4);
+    expect(linkedList.head.value).to.equal(5);
   });
 
   it("should contain a value that was added", function(){
@@ -49,6 +51,26 @@ describe('linkedList', function() {
     linkedList.addToTail(5);
     linkedList.removeHead();
     expect(linkedList.contains(4)).to.equal(false);
+  });
+
+  it('node should have previous property', function(){
+    linkedList.addToTail(6);
+    linkedList.addToTail(7);
+    expect(linkedList.tail.previous.value).to.equal(6);
+  });
+
+  it('Should add nodes to the head of the list', function(){
+    linkedList.addToHead(6);
+    linkedList.addToHead(7);
+    expect(linkedList.head.value).to.equal(7);
+    expect(linkedList.head.next.value).to.equal(6);
+  });
+
+  it('should return the value of the former tail when removed', function(){
+    linkedList.addToTail(5);
+    linkedList.addToTail(3);
+    expect(linkedList.removeTail()).to.equal(3);
+    expect(linkedList.tail.value).to.equal(5);
   });
 
   // add more tests here to test the functionality of linkedList

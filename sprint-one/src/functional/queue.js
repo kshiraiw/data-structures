@@ -1,9 +1,9 @@
 var Queue = function(){
   var someInstance = {};
+  var length = 0;
 
   // Use an object with numeric keys to store values
   var storage = {};
-  var length = 0;
   // Implement the methods below
 
   someInstance.enqueue = function(value){
