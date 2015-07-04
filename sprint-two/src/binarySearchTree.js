@@ -1,64 +1,57 @@
-var BinarySearchTree = function(value){
+var BinarySearchTree= function(value) {
 	var obj = Object.create(BinarySearchTree.prototype);
 	obj.value = value;
-	obj.left = null;
 	obj.right = null;
+	obj.left = null;
 	return obj;
 };
 
 BinarySearchTree.prototype = {
-	insert: function(value){
-		var tree = BinarySearchTree(value);
-		var current = this;
-		var isPlaced = false;
-		while(!isPlaced) {
-			if(value > current.value){
-				if(current.right === null){
-					isPlaced = true;
-					current.right = tree;
+	insert: function(value) {
+		var node = BinarySearchTree(value);
+		var place = function(tree) {
+			if (value > tree.value) {
+				if (!tree.right) {
+					tree.right = node;
 				} else {
-					current = current.right;
+					place(tree.right);
 				}
 			} else {
-				if (current.left === null) {
-					isPlaced = true;
-					current.left = tree;
+				if (!tree.left) {
+					tree.left = node;
 				} else {
-					current = current.left;
+					place(tree.left);
 				}
-			}
-		}
-	},
-	contains: function(value) {
-		var nodeContains = function(node) {
-			if (node.value === value) {
-				return true;
-			} else if (!node.left && !node.right) {
-				return false;
-			} else if (value > node.value) {
-				return nodeContains(node.right);
-			} else {
-				return nodeContains(node.left);
 			}
 		};
-
-		return nodeContains(this);
+		place(this);
 	},
-	depthFirstLog: function(callback){
-		var addCallback = function(current){
-			callback(current.value);
-			if(current.left){
-				addCallback(current.left);
+	contains: function(value) {
+		var answer = false;
+		var searching = function(node){
+			if (node.value === value) {
+				answer = true;
+			} else if (value > node.value && node.right) {
+				searching(node.right);
+			} else if (node.left) {
+				searching(node.left);
 			}
-			if(current.right){
-				addCallback(current.right);
+		};
+		searching(this);
+		return answer;
+	},
+	depthFirstLog: function(callback) {
+		var addCallback = function(node){
+			callback(node.value);
+			if (node.right) {
+				addCallback(node.right);
+			} else if (node.left) {
+				addCallback(node.left);
 			}
 		};
 		addCallback(this);
 	}
 };
-
-
 
 
 /*

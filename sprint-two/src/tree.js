@@ -20,7 +20,7 @@ var treeMethods = {
 				for (var i = 0; i < node.children.length; i++) {
 					searching(node.children[i]);
 				}
-			} 
+			}
 		};
 	searching(this);
 	return isFound;
@@ -98,7 +98,6 @@ var treeMethods = {
 // 	searching(this);
 // 	return answer;
 // };
->>>>>>> Stashed changes
 
 
 /*
